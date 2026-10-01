@@ -1,0 +1,9 @@
+{# Dropdown of project choices. Expects: gig, auto_label #}
+<option value="__auto__" {% if gig.project_source == 'auto' %}selected{% endif %}>{{ auto_label }}</option>
+{% for name in project_names %}
+  <option value="{{ name }}" {% if gig.project_source == 'manual' and gig.project == name %}selected{% endif %}>{{ name }}</option>
+{% endfor %}
+{% if gig.project and gig.project not in project_names %}
+  <option value="{{ gig.project }}" {% if gig.project_source == 'manual' %}selected{% endif %}>{{ gig.project }} (not in config)</option>
+{% endif %}
+<option value="__none__" {% if gig.project_source == 'manual' and not gig.project %}selected{% endif %}>Unassigned</option>

@@ -1,0 +1,4 @@
+# The only libraries the app needs. start.sh installs these for you.
+flask>=3.0,<4
+requests>=2.31,<3
+tzdata>=2024.1

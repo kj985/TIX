@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if config.is_example %}
+<div class="flash flash-info">
+  Using the example settings. Copy <code>config.example.toml</code> to <code>config.toml</code> and add your Bandsintown app_id to import real gigs (README step 4).
+</div>
+{% endif %}
+
+<section class="toolbar">
+  <form method="get" class="filters">
+    <div class="segmented">
+      {% for value, label in when_options %}
+        <a href="{{ url_for('index', when=value, project=project) }}" class="{{ 'active' if when == value }}">{{ label }}</a>
+      {% endfor %}
+    </div>
+    <input type="hidden" name="when" value="{{ when }}">
+    <label>Project
+      <select name="project" onchange="this.form.submit()">
+        <option value="">All projects</option>
+        {% for name in project_names %}
+          <option value="{{ name }}" {% if project == name %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+        <option value="__none__" {% if project == '__none__' %}selected{% endif %}>Unassigned</option>
+      </select>
+    </label>
+    <noscript><button type="submit">Filter</button></noscript>
+  </form>
+
+  <div class="actions">
+    <form method="post" action="{{ url_for('do_import') }}">
+      <button type="submit" class="primary" {% if not config.has_api_credentials %}disabled title="Add your Bandsintown app_id to config.toml first"{% endif %}>Import from Bandsintown</button>
+    </form>
+    <form method="post" action="{{ url_for('do_import_sample') }}">
+      <button type="submit">Load sample gigs</button>
+    </form>
+    {% if totals.has_sample %}
+    <form method="post" action="{{ url_for('do_clear_sample') }}" onsubmit="return confirm('Delete all sample gigs (and anything you typed into them)?')">
+      <button type="submit" class="danger">Delete sample gigs</button>
+    </form>
+    {% endif %}
+  </div>
+</section>
+
+<section class="stats">
+  <div><span class="stat">{{ totals.count }}</span> gigs</div>
+  <div><span class="stat">{{ totals.budget | money }}</span> ad budget ({{ config.currency }})</div>
+  <div><span class="stat">{{ "{:,}".format(totals.sold) }}</span> tickets sold</div>
+</section>
+
+{% if not gigs %}
+  <p class="empty">
+    {% if not totals.any %}No gigs yet. Click <strong>Load sample gigs</strong> to try things out, or <strong>Import from Bandsintown</strong> once your app_id is set up.
+    {% else %}No gigs match this filter.{% endif %}
+  </p>
+{% else %}
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Date</th><th>Days</th><th>Project</th><th>Venue</th><th>City</th>
+      <th>Tickets</th><th class="num">Budget</th><th class="num">Sold</th><th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for gig in gigs %}
+    <tr class="{{ 'past' if gig.is_past }}">
+      <td class="nowrap">
+        <strong>{{ gig.starts | nice_date }}</strong><br>
+        <span class="muted">{{ gig.starts | nice_time }}</span>
+      </td>
+      <td class="nowrap">
+        <span class="days {{ 'soon' if 0 <= gig.days_until <= 14 }}">{{ days_label(gig.days_until) }}</span>
+      </td>
+      <td>
+        <form method="post" action="{{ url_for('change_project', gig_id=gig.id) }}" class="project-form">
+          <input type="hidden" name="next" value="{{ request.full_path }}">
+          <span class="dot c{{ project_colour(gig.project) }}"></span>
+          <select name="project" onchange="this.form.submit()" title="{{ gig.project_reason or '' }}">
+            {% with auto_label = 'Auto: ' ~ (gig.project or 'Unassigned') if gig.project_source == 'auto' else 'Auto-detect' %}
+              {% include "_project_select.html" %}
+            {% endwith %}
+          </select>
+          <noscript><button type="submit">Set</button></noscript>
+        </form>
+      </td>
+      <td>
+        {{ gig.venue_name }}
+        {% if gig.title %}<br><span class="muted small">{{ gig.title }}</span>{% endif %}
+        {% if gig.missing_from_source %}<br><span class="warn">No longer on Bandsintown: cancelled?</span>{% endif %}
+        {% if gig.source == 'sample' %}<span class="tag">sample</span>{% endif %}
+      </td>
+      <td>{{ gig.location }}</td>
+      <td class="nowrap">
+        {% if gig.effective_ticket_url %}
+          <a href="{{ gig.effective_ticket_url }}" target="_blank" rel="noopener">Tickets ↗</a>
+        {% else %}<span class="muted">none</span>{% endif %}
+      </td>
+      <td class="num">{{ gig.ad_budget | money }}</td>
+      <td class="num">{{ "{:,}".format(gig.tickets_sold) if gig.tickets_sold is not none else '' }}</td>
+      <td>
+        <a href="{{ url_for('edit_gig', gig_id=gig.id, next=request.full_path) }}" class="button small">Edit</a>
+        {% if gig.notes %}<span class="note-icon" title="{{ gig.notes }}">📝</span>{% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+{% endblock %}
