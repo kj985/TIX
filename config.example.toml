@@ -1,0 +1,57 @@
+# ---------------------------------------------------------------------------
+# Gig tool settings.
+#
+# Copy this file to "config.toml" (same folder) and edit that copy.
+# config.toml is private and is never uploaded to GitHub.
+# ---------------------------------------------------------------------------
+
+[bandsintown]
+# Exactly as it appears on Bandsintown.
+artist_name = "Sarah McLeod"
+
+# Your Bandsintown API key (Bandsintown calls it "app_id").
+# Get it from Bandsintown for Artists: Settings -> General -> Get API Key.
+# Leave it empty until you have one; you can still test with sample data.
+app_id = ""
+
+[app]
+# Used to work out "days until the show". Change to e.g. "Australia/Adelaide",
+# "Australia/Melbourne", "Australia/Brisbane" or "Australia/Perth" if you prefer.
+timezone = "Australia/Sydney"
+currency = "AUD"
+
+# The dashboard opens at http://localhost:5050
+# (5000 is avoided because macOS uses it for AirPlay.)
+port = 5050
+
+# ---------------------------------------------------------------------------
+# Projects and how to recognise them.
+#
+# For each imported gig, the tool looks for these keywords in the event
+# title (strongest signal), the lineup, then the description.
+# Matching ignores capitals and punctuation, and treats "&", "+" and "and"
+# as the same thing. The project with the strongest match wins; if two tie,
+# the one listed first here wins.
+#
+# Tip: do NOT add plain "Sarah McLeod" as a keyword. Every gig on her
+# Bandsintown page has her name in the lineup, so it would match everything.
+# ---------------------------------------------------------------------------
+
+[detection]
+# If no keywords match at all, the gig is tagged with this project.
+# Set to "" to leave such gigs as "Unassigned" instead.
+fallback_project = "Sarah McLeod"
+
+[[projects]]
+name = "The Superjesus"
+keywords = ["Superjesus", "Super Jesus"]
+
+[[projects]]
+name = "Sarah & Mick"
+# Tip: add Mick's full name here too, e.g. "Mick Surname", if he is
+# listed in lineups.
+keywords = ["Sarah & Mick", "Sarah and Mick", "Sarah + Mick", "Sarah n Mick"]
+
+[[projects]]
+name = "Sarah McLeod"
+keywords = ["solo"]

@@ -1,0 +1,354 @@
+{
+  "_note": "FAKE sample gigs for testing, in the same format the Bandsintown API returns. Venues are real places but these shows are made up. Dates are shifted when loaded so the first gig is always 3 days from today; the last two are deliberately in the past so you can try entering tickets sold.",
+  "anchor_date": "2026-10-01",
+  "events": [
+    {
+      "id": "900000001",
+      "artist_id": "999999",
+      "url": "https://example.com/bandsintown/e/900000001",
+      "on_sale_datetime": "",
+      "datetime": "2026-10-04T20:00:00",
+      "title": "Sarah & Mick",
+      "description": "",
+      "venue": {
+        "name": "Lizotte's",
+        "latitude": "",
+        "longitude": "",
+        "city": "Newcastle",
+        "region": "NSW",
+        "country": "Australia"
+      },
+      "offers": [
+        {
+          "type": "Tickets",
+          "url": "https://example.com/humanitix/sarah-and-mick-newcastle",
+          "status": "available"
+        }
+      ],
+      "lineup": [
+        "Sarah McLeod"
+      ]
+    },
+    {
+      "id": "900000002",
+      "artist_id": "999999",
+      "url": "https://example.com/bandsintown/e/900000002",
+      "on_sale_datetime": "",
+      "datetime": "2026-10-09T20:30:00",
+      "title": "The Superjesus - Live at The Gov",
+      "description": "",
+      "venue": {
+        "name": "The Gov",
+        "latitude": "",
+        "longitude": "",
+        "city": "Hindmarsh",
+        "region": "SA",
+        "country": "Australia"
+      },
+      "offers": [
+        {
+          "type": "Tickets",
+          "url": "https://example.com/oztix/superjesus-the-gov",
+          "status": "available"
+        }
+      ],
+      "lineup": [
+        "Sarah McLeod"
+      ]
+    },
+    {
+      "id": "900000003",
+      "artist_id": "999999",
+      "url": "https://example.com/bandsintown/e/900000003",
+      "on_sale_datetime": "",
+      "datetime": "2026-10-16T20:00:00",
+      "title": "",
+      "description": "",
+      "venue": {
+        "name": "Corner Hotel",
+        "latitude": "",
+        "longitude": "",
+        "city": "Richmond",
+        "region": "VIC",
+        "country": "Australia"
+      },
+      "offers": [
+        {
+          "type": "Tickets",
+          "url": "https://example.com/moshtix/superjesus-corner-hotel",
+          "status": "available"
+        }
+      ],
+      "lineup": [
+        "Sarah McLeod",
+        "The Superjesus"
+      ]
+    },
+    {
+      "id": "900000004",
+      "artist_id": "999999",
+      "url": "https://example.com/bandsintown/e/900000004",
+      "on_sale_datetime": "",
+      "datetime": "2026-10-23T19:30:00",
+      "title": "Sarah McLeod (solo acoustic)",
+      "description": "Just Sarah, a guitar and the songs.",
+      "venue": {
+        "name": "Brunswick Ballroom",
+        "latitude": "",
+        "longitude": "",
+        "city": "Brunswick",
+        "region": "VIC",
+        "country": "Australia"
+      },
+      "offers": [
+        {
+          "type": "Tickets",
+          "url": "https://example.com/eventbrite/sarah-mcleod-solo-brunswick",
+          "status": "available"
+        }
+      ],
+      "lineup": [
+        "Sarah McLeod"
+      ]
+    },
+    {
+      "id": "900000005",
+      "artist_id": "999999",
+      "url": "https://example.com/bandsintown/e/900000005",
+      "on_sale_datetime": "",
+      "datetime": "2026-10-31T19:30:00",
+      "title": "",
+      "description": "An intimate evening of songs and stories.",
+      "venue": {
+        "name": "Camelot Lounge",
+        "latitude": "",
+        "longitude": "",
+        "city": "Marrickville",
+        "region": "NSW",
+        "country": "Australia"
+      },
+      "offers": [
+        {
+          "type": "Tickets",
+          "url": "https://example.com/humanitix/camelot-sarah-mcleod",
+          "status": "available"
+        }
+      ],
+      "lineup": [
+        "Sarah McLeod"
+      ]
+    },
+    {
+      "id": "900000006",
+      "artist_id": "999999",
+      "url": "https://example.com/bandsintown/e/900000006",
+      "on_sale_datetime": "",
+      "datetime": "2026-11-15T15:00:00",
+      "title": "Bayside Rock Festival",
+      "description": "Sarah performs a full set with The Superjesus.",
+      "venue": {
+        "name": "Sandstone Point Hotel",
+        "latitude": "",
+        "longitude": "",
+        "city": "Bribie Island",
+        "region": "QLD",
+        "country": "Australia"
+      },
+      "offers": [
+        {
+          "type": "Tickets",
+          "url": "https://example.com/ticketek/bayside-rock-festival",
+          "status": "available"
+        }
+      ],
+      "lineup": [
+        "Sarah McLeod",
+        "Another Band",
+        "Third Act"
+      ]
+    },
+    {
+      "id": "900000007",
+      "artist_id": "999999",
+      "url": "https://example.com/bandsintown/e/900000007",
+      "on_sale_datetime": "",
+      "datetime": "2026-11-22T20:00:00",
+      "title": "Sarah and Mick - Rock Duo Tour",
+      "description": "",
+      "venue": {
+        "name": "Rosemount Hotel",
+        "latitude": "",
+        "longitude": "",
+        "city": "North Perth",
+        "region": "WA",
+        "country": "Australia"
+      },
+      "offers": [
+        {
+          "type": "Tickets",
+          "url": "https://example.com/oztix/sarah-and-mick-rosemount",
+          "status": "available"
+        }
+      ],
+      "lineup": [
+        "Sarah McLeod"
+      ]
+    },
+    {
+      "id": "900000008",
+      "artist_id": "999999",
+      "url": "https://example.com/bandsintown/e/900000008",
+      "on_sale_datetime": "",
+      "datetime": "2026-11-30T20:00:00",
+      "title": "The Superjesus",
+      "description": "",
+      "venue": {
+        "name": "The Tivoli",
+        "latitude": "",
+        "longitude": "",
+        "city": "Fortitude Valley",
+        "region": "QLD",
+        "country": "Australia"
+      },
+      "offers": [
+        {
+          "type": "Tickets",
+          "url": "https://example.com/ticketek/superjesus-tivoli",
+          "status": "available"
+        }
+      ],
+      "lineup": [
+        "Sarah McLeod"
+      ]
+    },
+    {
+      "id": "900000009",
+      "artist_id": "999999",
+      "url": "https://example.com/bandsintown/e/900000009",
+      "on_sale_datetime": "",
+      "datetime": "2026-12-15T20:30:00",
+      "title": "Sarah + Mick",
+      "description": "Tickets at the door only.",
+      "venue": {
+        "name": "Volume Bar",
+        "latitude": "",
+        "longitude": "",
+        "city": "Ballarat",
+        "region": "VIC",
+        "country": "Australia"
+      },
+      "offers": [],
+      "lineup": [
+        "Sarah McLeod"
+      ]
+    },
+    {
+      "id": "900000010",
+      "artist_id": "999999",
+      "url": "https://example.com/bandsintown/e/900000010",
+      "on_sale_datetime": "",
+      "datetime": "2026-12-30T20:00:00",
+      "title": "Sarah McLeod & Band",
+      "description": "",
+      "venue": {
+        "name": "Odeon Theatre",
+        "latitude": "",
+        "longitude": "",
+        "city": "Hobart",
+        "region": "TAS",
+        "country": "Australia"
+      },
+      "offers": [
+        {
+          "type": "Tickets",
+          "url": "https://example.com/moshtix/sarah-mcleod-hobart",
+          "status": "available"
+        }
+      ],
+      "lineup": [
+        "Sarah McLeod"
+      ]
+    },
+    {
+      "id": "900000011",
+      "artist_id": "999999",
+      "url": "https://example.com/bandsintown/e/900000011",
+      "on_sale_datetime": "",
+      "datetime": "2027-01-29T20:00:00",
+      "title": "The Superjesus",
+      "description": "",
+      "venue": {
+        "name": "Factory Theatre",
+        "latitude": "",
+        "longitude": "",
+        "city": "Marrickville",
+        "region": "NSW",
+        "country": "Australia"
+      },
+      "offers": [
+        {
+          "type": "Tickets",
+          "url": "https://example.com/oztix/superjesus-factory-theatre",
+          "status": "available"
+        }
+      ],
+      "lineup": [
+        "Sarah McLeod"
+      ]
+    },
+    {
+      "id": "900000012",
+      "artist_id": "999999",
+      "url": "https://example.com/bandsintown/e/900000012",
+      "on_sale_datetime": "",
+      "datetime": "2026-09-21T20:00:00",
+      "title": "Sarah & Mick",
+      "description": "",
+      "venue": {
+        "name": "Wheatsheaf Hotel",
+        "latitude": "",
+        "longitude": "",
+        "city": "Thebarton",
+        "region": "SA",
+        "country": "Australia"
+      },
+      "offers": [
+        {
+          "type": "Tickets",
+          "url": "https://example.com/humanitix/sarah-and-mick-wheaty",
+          "status": "available"
+        }
+      ],
+      "lineup": [
+        "Sarah McLeod"
+      ]
+    },
+    {
+      "id": "900000013",
+      "artist_id": "999999",
+      "url": "https://example.com/bandsintown/e/900000013",
+      "on_sale_datetime": "",
+      "datetime": "2026-09-07T20:30:00",
+      "title": "The Superjesus",
+      "description": "",
+      "venue": {
+        "name": "Hotel Gearin",
+        "latitude": "",
+        "longitude": "",
+        "city": "Katoomba",
+        "region": "NSW",
+        "country": "Australia"
+      },
+      "offers": [
+        {
+          "type": "Tickets",
+          "url": "https://example.com/moshtix/superjesus-katoomba",
+          "status": "available"
+        }
+      ],
+      "lineup": [
+        "Sarah McLeod"
+      ]
+    }
+  ]
+}

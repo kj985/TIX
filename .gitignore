@@ -1,0 +1,9 @@
+# Your private settings and your data never go into git.
+config.toml
+data/
+
+# Python housekeeping
+.venv/
+__pycache__/
+*.pyc
+.DS_Store

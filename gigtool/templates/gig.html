@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}{{ gig.venue_name }}{% endblock %}
+{% block content %}
+{% set back = safe_next(request.args.get('next') or request.form.get('next'), url_for('index')) %}
+<p><a href="{{ back }}">← Back to all gigs</a></p>
+
+<div class="gig-header">
+  <h1>{{ gig.venue_name }}<span class="muted">, {{ gig.location }}</span></h1>
+  <p>
+    <strong>{{ gig.starts | nice_date }}, {{ gig.starts | nice_time }}</strong>
+    · {{ days_label(gig.days_until) }}
+    {% if gig.title %}· {{ gig.title }}{% endif %}
+  </p>
+  {% if gig.missing_from_source %}<p class="warn">This gig is no longer listed on Bandsintown. It may have been cancelled.</p>{% endif %}
+</div>
+
+<div class="two-col">
+  <form method="post" class="card">
+    <input type="hidden" name="next" value="{{ back }}">
+    <h2>Your details</h2>
+    <p class="muted small">These are never changed by an import.</p>
+
+    <label>Project
+      <select name="project">
+        {% with auto_label = 'Auto-detect (currently: ' ~ (gig.project or 'Unassigned') ~ ')' if gig.project_source == 'auto' else 'Auto-detect' %}
+          {% include "_project_select.html" %}
+        {% endwith %}
+      </select>
+    </label>
+    <p class="muted small">{{ gig.project_reason or '' }}</p>
+
+    <label>Ad budget ({{ config.currency }})
+      <input name="ad_budget" inputmode="decimal" placeholder="e.g. 250"
+             value="{{ form.ad_budget if form else ('%.2f' % gig.ad_budget if gig.ad_budget is not none else '') }}">
+    </label>
+
+    <label>Tickets sold <span class="muted small">(fill in after the show)</span>
+      <input name="tickets_sold" inputmode="numeric" placeholder="e.g. 312"
+             value="{{ form.tickets_sold if form else (gig.tickets_sold if gig.tickets_sold is not none else '') }}">
+    </label>
+
+    <label>Ticket link override <span class="muted small">(optional: use instead of the Bandsintown link)</span>
+      <input name="ticket_url_override" type="url" placeholder="https://..."
+             value="{{ form.ticket_url_override if form else (gig.ticket_url_override or '') }}">
+    </label>
+
+    <label>Notes
+      <textarea name="notes" rows="5">{{ form.notes if form else (gig.notes or '') }}</textarea>
+    </label>
+
+    <button type="submit" class="primary">Save</button>
+  </form>
+
+  <div class="card">
+    <h2>From Bandsintown</h2>
+    <p class="muted small">Refreshed every time you import.</p>
+    <dl>
+      <dt>Ticket link</dt>
+      <dd>{% if gig.ticket_url %}<a href="{{ gig.ticket_url }}" target="_blank" rel="noopener">{{ gig.ticket_url }}</a>{% else %}none{% endif %}</dd>
+      <dt>Event page</dt>
+      <dd>{% if gig.event_url %}<a href="{{ gig.event_url }}" target="_blank" rel="noopener">{{ gig.event_url }}</a>{% else %}none{% endif %}</dd>
+      <dt>Lineup</dt>
+      <dd>{{ gig.lineup_list | join(', ') or 'none' }}</dd>
+      <dt>Description</dt>
+      <dd>{{ gig.description or 'none' }}</dd>
+      <dt>Country</dt>
+      <dd>{{ gig.country or 'unknown' }}</dd>
+      <dt>Last imported</dt>
+      <dd>{{ gig.last_imported_at }} (UTC){% if gig.source == 'sample' %} · sample gig{% endif %}</dd>
+    </dl>
+  </div>
+</div>
+{% endblock %}

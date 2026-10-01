@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Settings problem{% endblock %}
+{% block content %}
+<div class="flash flash-error">
+  <strong>Settings problem:</strong> {{ message }}
+  <p>Fix config.toml, save it, then reload this page.</p>
+</div>
+{% endblock %}
